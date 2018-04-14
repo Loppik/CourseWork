@@ -26,5 +26,12 @@
               <property name="suffix" value=".jsp" />
        </bean>
 
+       <mvc:interceptors>
+              <mvc:interceptor>
+                     <mvc:mapping path="/*" />
+                     <bean class="echo.coursework.interceptors.CheckUserInterceptor" />
+              </mvc:interceptor>
+       </mvc:interceptors>
+
 
 </beans>
