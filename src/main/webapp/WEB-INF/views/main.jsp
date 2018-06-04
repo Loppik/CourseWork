@@ -23,5 +23,7 @@
         <p>${question.text}</p>
     </c:forEach>
 <br/>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>

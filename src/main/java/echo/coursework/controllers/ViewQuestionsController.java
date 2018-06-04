@@ -1,6 +1,8 @@
 package echo.coursework.controllers;
 
 import echo.coursework.dao.HardCodeDao;
+import echo.coursework.dao.MySqlDao;
+import echo.coursework.model.InformStorageModel;
 import echo.coursework.model.entity.Question;
 import echo.coursework.model.entity.users.Guest;
 import echo.coursework.model.entity.users.User;
@@ -22,8 +24,7 @@ public class ViewQuestionsController {
 
     @RequestMapping(value = "/questions", method = RequestMethod.GET)
     public ModelAndView viewLastQuestions() {
-        HardCodeDao mySql = new HardCodeDao();
-        ArrayList<Question> questions = mySql.getLastQuestions(5);
+        ArrayList<Question> questions = InformStorageModel.getDao().getLastQuestions(5);
         return new ModelAndView("main", "questions", questions);
     }
 }

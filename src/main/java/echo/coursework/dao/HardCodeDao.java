@@ -47,7 +47,6 @@ public class HardCodeDao extends Dao{
     }
 
     public ArrayList<Answer> getAnswers(int questionId) {
-        System.out.println("asdasdasd");
         ArrayList<Answer> ans = new ArrayList<Answer>(3);
         Question question = questions.get(questionId);
         if (question.getAnswersId() != null) {
