@@ -2,14 +2,11 @@ package echo.coursework.model.entity.users;
 
 public class RegUser extends User{
     private int id;
-    private String name;
-    private String password;
     private int rating;
 
     public RegUser(int id, String name, String password, int rating) {
+        super(name, password);
         this.id = id;
-        this.name = name;
-        this.password = password;
         this.rating = rating;
     }
 
@@ -27,21 +24,5 @@ public class RegUser extends User{
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

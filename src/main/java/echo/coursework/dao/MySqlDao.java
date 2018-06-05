@@ -2,6 +2,7 @@ package echo.coursework.dao;
 
 import echo.coursework.model.entity.Answer;
 import echo.coursework.model.entity.Question;
+import echo.coursework.model.entity.users.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,6 +24,71 @@ public class MySqlDao extends Dao {
             System.out.println("VendorError: " + ex.getErrorCode());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean checkUser(String name, String password) {
+        boolean res = false;
+        try {
+            stmt = conn.createStatement();
+            String query = "SELECT * FROM qaecho.user WHERE name = \"" + name + "\" AND password = \"" + password + "\";";
+            System.out.println(query);
+            rs = stmt.executeQuery(query);
+            rs = stmt.getResultSet();
+            if (rs.next()) {
+                res = true;
+            }
+        }
+        catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException sqlEx) { } // ignore
+                rs = null;
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) { } // ignore
+
+                stmt = null;
+            }
+        }
+        return res;
+    }
+
+    public void addUser(User user) {
+        try {
+            stmt = conn.createStatement();
+            String query = "INSERT INTO qaecho.user VALUES (\"" + user.getName() + "\", \"" + user.getPassword() + "\", \"0\");";
+            System.out.println(query);
+            rs = stmt.executeQuery(query);
+            rs = stmt.getResultSet();
+        }
+        catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException sqlEx) { } // ignore
+                rs = null;
+            }
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException sqlEx) { } // ignore
+
+                stmt = null;
+            }
         }
     }
 

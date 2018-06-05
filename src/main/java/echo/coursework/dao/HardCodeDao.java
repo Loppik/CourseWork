@@ -56,4 +56,12 @@ public class HardCodeDao extends Dao{
         }
         return ans;
     }
+
+    public boolean checkUser(String name, String password) {
+        return false;
+    }
+
+    public void addUser(User user) {
+
+    }
 }

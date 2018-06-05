@@ -16,6 +16,7 @@
         <input type="password" title="Password" name="password">
         <button>Sing up</button>
     </form>
+    <h2>${user.name}</h2>
     <c:forEach var="question" items="${questions}">
         <br>
         <a href="/question/${question.id}">${question.title}</a>

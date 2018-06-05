@@ -1,5 +1,6 @@
 package echo.coursework.controllers;
 
+import echo.coursework.model.InformStorageModel;
 import echo.coursework.model.entity.users.RegUser;
 import echo.coursework.model.entity.users.User;
 import org.springframework.stereotype.Controller;
@@ -14,18 +15,42 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public void signIn(@RequestParam("name") String userName, @RequestParam("password") String userPassword, Model model, HttpServletResponse response) {
-        User user = new RegUser(0,userName, userPassword, 4);
-        model.addAttribute("user", user);
-        try {
-            response.sendRedirect("/questions");
-        } catch(Exception e) {
-            e.printStackTrace();
+        if (InformStorageModel.getDao().checkUser(userName, userPassword)) {
+            User user = new RegUser(0,userName, userPassword, 4); // get user data from db
+            model.addAttribute("user", user);
+            try {
+                response.sendRedirect("/questions");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // inform user about wrong input data
+            try {
+                response.sendRedirect("/");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView signUp(@RequestParam("name") String userName, @RequestParam("password") String userPassword) {
-        User user = new RegUser(1,userName, userPassword, 0);
-        return new ModelAndView("main", "user", user);
+    public void signUp(@RequestParam("name") String userName, @RequestParam("password") String userPassword, Model model, HttpServletResponse response) {
+        if (!InformStorageModel.getDao().checkUser(userName, userPassword)) {
+            User user = new RegUser(1,userName, userPassword, 0);
+            InformStorageModel.getDao().addUser(user);
+            model.addAttribute("user", user);
+            try {
+                response.sendRedirect("/questions");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // inform user about wrong input data
+            try {
+                response.sendRedirect("/");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

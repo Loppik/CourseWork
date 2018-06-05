@@ -24,7 +24,7 @@ public class ViewQuestionsController {
 
     @RequestMapping(value = "/questions", method = RequestMethod.GET)
     public ModelAndView viewLastQuestions() {
-        ArrayList<Question> questions = InformStorageModel.getDao().getLastQuestions(5);
+        ArrayList<Question> questions = InformStorageModel.getDao().getLastQuestions(10);
         return new ModelAndView("main", "questions", questions);
     }
 }
