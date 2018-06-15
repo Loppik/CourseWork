@@ -10,12 +10,14 @@ public class Question {
     private int topicId;
     private ArrayList<Integer> answersId;
 
-    public Question(int id, String title, String text, int userId) {
+    public Question() {};
+
+    public Question(int id, String title, String text, int userId, int topicId) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.userId = userId;
-        this.topicId = -1;
+        this.topicId = topicId;
         this.answersId = null;
     }
 

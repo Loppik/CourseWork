@@ -7,6 +7,7 @@ import echo.coursework.model.entity.users.RegUser;
 import echo.coursework.model.entity.users.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HardCodeDao extends Dao{
@@ -23,9 +24,9 @@ public class HardCodeDao extends Dao{
         users.add(alex);
         users.add(nick);
         users.add(egor);
-        questions.add(new Question(0, "Question1", "La-la-la ques1 text", 0));
-        questions.add(new Question(1, "Question2", "La-la-la ques2 text", 1));
-        questions.add(new Question(2, "Question3", "La-la-la ques3 text", 2));
+        questions.add(new Question(0, "Question1", "La-la-la ques1 text", 0, 1));
+        questions.add(new Question(1, "Question2", "La-la-la ques2 text", 1, 6));
+        questions.add(new Question(2, "Question3", "La-la-la ques3 text", 2, 2));
 
         answers.add(new Answer(0, "answer from user 1", 1));
         questions.get(0).setAnswersId(0);
@@ -61,7 +62,15 @@ public class HardCodeDao extends Dao{
         return false;
     }
 
-    public void addUser(User user) {
+    public User addUser(String name, String password) {
+        return null;
+    }
 
+    public User getUser(String name) {
+        return null;
+    }
+
+    public List<Question> searchQuestionsByTitle(String text) {
+        return null;
     }
 }

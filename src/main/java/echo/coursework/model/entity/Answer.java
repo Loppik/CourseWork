@@ -6,6 +6,8 @@ public class Answer {
     private int likes;
     private int userId;
 
+    public Answer() {};
+
     public Answer(int id, String text, int userId) {
         this.id = id;
         this.text = text;

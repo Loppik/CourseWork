@@ -4,6 +4,8 @@ public class RegUser extends User{
     private int id;
     private int rating;
 
+    public RegUser() {};
+
     public RegUser(int id, String name, String password, int rating) {
         super(name, password);
         this.id = id;
